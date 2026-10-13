@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "secom"
+version = "0.1.0"
+description = "Wafer failure prediction on the UCI SECOM dataset"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scipy",
+    # imbalanced-learn 0.12 (the last release for Python 3.9) predates scikit-learn 1.6
+    "scikit-learn<1.6; python_version < '3.10'",
+    "scikit-learn; python_version >= '3.10'",
+    "imbalanced-learn",
+    "lightgbm",
+    "matplotlib",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

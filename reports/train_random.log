@@ -1,0 +1,34 @@
+Split: random
+Train: 1253 wafers (83 fail)   Hold-out: 314 wafers (21 fail)
+Baseline: always-pass accuracy 0.933, random-ranking PR-AUC 0.067
+
+--- class_weight ---
+                              roc_auc  pr_auc  precision  recall  accuracy  tp  fp  fn    tn
+CV out-of-fold @ tuned thr      0.696   0.142      0.230   0.277     0.891  23  77  60  1093
+Hold-out @ 0.50                 0.734   0.217      0.000   0.000     0.930   0   1  21   292
+Hold-out @ tuned thr (0.243)    0.734   0.217      0.364   0.381     0.914   8  14  13   279
+Hold-out at tuned threshold: catches 8 of 21 failures, raising 14 false alarms.
+
+--- smote ---
+                              roc_auc  pr_auc  precision  recall  accuracy  tp   fp  fn    tn
+CV out-of-fold @ tuned thr      0.683   0.167      0.199   0.349     0.864  29  117  54  1053
+Hold-out @ 0.50                 0.694   0.156      0.000   0.000     0.927   0    2  21   291
+Hold-out @ tuned thr (0.232)    0.694   0.156      0.219   0.333     0.876   7   25  14   268
+Hold-out at tuned threshold: catches 7 of 21 failures, raising 25 false alarms.
+
+Top 10 sensor signals driving failure predictions (class_weight model)
+gain_share = share of total split gain in the final model; folds_in_top20 = of 5 CV refits, how many rank it in the top 20
+            gain_share  cv_gain_share  folds_in_top20  median_fail  median_pass  pct_missing  n_distinct
+sensor                                                                                                  
+sensor_033     0.03116         0.0333               5        8.904         8.77            0         324
+sensor_031     0.02938        0.03094               5         3.42        3.432      0.07981        1068
+sensor_103     0.02061        0.01893               5      -0.0078      -0.0102       0.1596         149
+sensor_213     0.01838        0.01514               4       0.0574        0.055        1.596         718
+sensor_130     0.01751        0.02082               5        0.771       0.7573       0.7183         296
+sensor_247     0.01625       0.008775               3       0.0408      0.02635        45.33         437
+sensor_547     0.01505       0.009925               3        404.6        403.2        15.96         834
+sensor_280     0.01455         0.0105               4       0.0162       0.0168       0.1596         236
+sensor_452     0.01371       0.006294               2        4.971        5.277      0.07981        1216
+sensor_059     0.01303        0.01002               2        4.974       0.8018        0.399        1212
+
+Saved reports/top_sensors.csv and reports/metrics.csv
